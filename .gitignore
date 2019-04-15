@@ -1,2 +1,13 @@
 node_modules
+.github/
 bulma
+js-dev
+.jscsrc
+.jshintignore
+woocommerce.css
+.vscode/
+.travis.yml
+package.json
+package-lock.json
+phpcs.xml.dist
+gulpfile.js 
