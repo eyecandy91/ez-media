@@ -14,7 +14,7 @@ gulp.task('browserSync', function() {
 gulp.task('sass', function(){
   return gulp.src('./bulma/style.sass')
     .pipe(sass()) // Converts Sass to CSS with gulp-sass
-    .pipe(sass({outputStyle: 'compressed'}))
+    // .pipe(sass({outputStyle: 'compressed'}))
     .pipe(gulp.dest(''))
     .pipe(browserSync.reload({
       stream: true
