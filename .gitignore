@@ -1,11 +1,11 @@
 node_modules
-.github/
-bulma
-js-dev
+.github/*
+bulma/*
+js-dev/*
 .jscsrc
 .jshintignore
 woocommerce.css
-.vscode/
+.vscode/*
 .travis.yml
 package.json
 package-lock.json
