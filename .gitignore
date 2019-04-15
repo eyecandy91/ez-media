@@ -1,8 +1,8 @@
 node_modules
-github
+.github/
 bulma
 js-dev
 .jscsrc
 .jshintignore
 woocommerce.css
-vscode
+.vscode/
