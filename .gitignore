@@ -1,6 +1,7 @@
 node_modules
 .github/*
 bulma
+build/*
 js-dev
 .jscsrc
 .jshintignore
