@@ -48,8 +48,6 @@
 
         <small class="has-text-centered is-fullwidth is-block"><?php echo $copyright; ?></small>
 
-        hello
-
     </div>
 
     <div class="arrow bounce"><i class="fa fa-angle-down fa-5x" aria-hidden="true"></i></div>
