@@ -12,19 +12,12 @@ gulp.task('browserSync', function() {
   })
 });
 
-gulp.task('purgecss', () => {
-  return gulp.src('style.css')
-      .pipe(purgecss({
-          content: ["**/*.php"]
-      }))
-      .pipe(gulp.dest('build/css'))
-})
 
 gulp.task('sass', function(){
   return gulp.src('./bulma/style.sass')
     .pipe(sass()) // Converts Sass to CSS with gulp-sass
     // .pipe(sass({outputStyle: 'compressed'}))
-    .pipe(gulp.dest(''))
+    .pipe(gulp.dest('build/css/'))
     .pipe(browserSync.reload({
       stream: true
     }))
@@ -35,6 +28,15 @@ gulp.task('beautify', function() {
         .pipe(cssbeautify())
         .pipe(gulp.dest(''));
 });
+
+gulp.task('purgecss', () => {
+  return gulp.src('build/css/style.css')
+      .pipe(purgecss({
+          content: ["**/*.php"]
+      }))
+      .pipe(gulp.dest(''))
+})
+
 
 // compresses all js files
 gulp.task('compress', function (cb) {
