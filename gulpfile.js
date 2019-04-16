@@ -4,11 +4,20 @@ var cssbeautify = require('gulp-cssbeautify');
 var browserSync = require('browser-sync').create();
 var uglify = require('gulp-uglify');
 var pump = require('pump');
+const purgecss = require('gulp-purgecss');
 
 gulp.task('browserSync', function() {
   browserSync.init({
     proxy: "http://localhost/work"
   })
+});
+
+gulp.task('purgecss', () => {
+  return gulp.src('style.css')
+      .pipe(purgecss({
+          content: ["**/*.php"]
+      }))
+      .pipe(gulp.dest('build/css'))
 })
 
 gulp.task('sass', function(){
@@ -38,7 +47,7 @@ gulp.task('compress', function (cb) {
   );
 });
 
-gulp.task('watch', ['browserSync', 'sass', 'compress'], function(){
+gulp.task('watch', ['browserSync', 'sass', 'compress', 'purgecss'], function(){
   gulp.watch('./bulma/style.sass', ['sass']);
   gulp.watch('./**/*.php', browserSync.reload);
   gulp.watch('./elements/**/*.php', browserSync.reload);
