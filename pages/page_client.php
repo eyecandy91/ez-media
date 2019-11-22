@@ -55,7 +55,7 @@ get_header(); ?>
                 ?>
                     <div data-aos="fade-left" class="column is-full-mobile is-half-tablet is-one-third-desktop">
                         <div class="card">
-                            <a class="card" href="<?php echo $url ?>">
+                            <a class="card" href="<?php echo $url ?>" target="_blank">
                                 <div class="card-img-top blog-img">
                                     <img src="<?php echo $image_link;?>" alt="<?php echo $image_desc;?>">
                                 </div>
