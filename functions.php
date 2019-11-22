@@ -375,14 +375,75 @@ function custom_post_type() {
 		// Registering your Custom Post Type
 		register_post_type( 'Pricing', $args );
 	
-	}
+}
 	
-	/* Hook into the 'init' action so that the function
-	* Containing our post type registration is not
-	* unnecessarily executed.
-	*/
+/* Hook into the 'init' action so that the function
+* Containing our post type registration is not
+* unnecessarily executed.
+*/
 	
-	add_action( 'init', 'custom_post_type', 0 );
+add_action( 'init', 'custom_post_type', 0 );
+
+// custom post for Clients table
+function custom_post_type_2() {
+
+	// Set UI labels for Custom Post Type
+		$labels = array(
+			'name'                => _x( 'Clients', 'Post Type General Name', 'twentythirteen' ),
+			'singular_name'       => _x( 'Clients', 'Post Type Singular Name', 'twentythirteen' ),
+			'menu_name'           => __( 'Clients', 'twentythirteen' ),
+			'parent_item_colon'   => __( 'Parent clients', 'twentythirteen' ),
+			'all_items'           => __( 'All clients', 'twentythirteen' ),
+			'view_item'           => __( 'View clients', 'twentythirteen' ),
+			'add_new_item'        => __( 'Add New clients', 'twentythirteen' ),
+			'add_new'             => __( 'Add New clients', 'twentythirteen' ),
+			'edit_item'           => __( 'Edit clients', 'twentythirteen' ),
+			'update_item'         => __( 'Update clients', 'twentythirteen' ),
+			'search_items'        => __( 'Search clients', 'twentythirteen' ),
+			'not_found'           => __( 'Not Found', 'twentythirteen' ),
+			'not_found_in_trash'  => __( 'Not found in Trash', 'twentythirteen' ),
+		);
+	
+	// Set other options for Custom Post Type
+	
+		$args = array(
+			'label'               => __( 'Clients', 'twentythirteen' ),
+			'description'         => __( 'Clients', 'twentythirteen' ),
+			'labels'              => $labels,
+			// Features this CPT supports in Post Editor
+			'supports'            => array( 'title', 'thumbnail', ),
+			// You can associate this CPT with a taxonomy or custom taxonomy.
+			'taxonomies'          => array( 'Clients' ),
+			/* A hierarchical CPT is like Pages and can have
+			* Parent and child items. A non-hierarchical CPT
+			* is like Posts.
+			*/
+			'hierarchical'        => false,
+			// 'taxonomies'            => array( 'category'),
+			'public'              => true,
+			'show_ui'             => true,
+			'show_in_menu'        => true,
+			'show_in_nav_menus'   => true,
+			'show_in_admin_bar'   => true,
+			'menu_position'       => 10,
+			'can_export'          => true,
+			'has_archive'         => true,
+			'exclude_from_search' => false,
+			'publicly_queryable'  => true,
+			'capability_type'     => 'page',
+		);
+	
+		// Registering your Custom Post Type
+		register_post_type( 'Clients', $args );
+	
+}
+	
+/* Hook into the 'init' action so that the function
+* Containing our post type registration is not
+* unnecessarily executed.
+*/
+	
+add_action( 'init', 'custom_post_type_2', 0 );
 
 
 	/**
@@ -675,3 +736,43 @@ function custom_post_type() {
 	function myprefix_get_theme_option( $id = '' ) {
 		return WPEX_Theme_Options::get_theme_option( $id );
 	}
+
+	/**
+ * Custom pagination
+ */
+function pagination($pages = '', $range = 4)
+{
+    $showitems = ($range * 2)+1;
+ 
+    global $paged;
+    if(empty($paged)) $paged = 1;
+ 
+    if($pages == '')
+    {
+        global $wp_query;
+        $pages = $wp_query->max_num_pages;
+        if(!$pages)
+        {
+            $pages = 1;
+        }
+    }
+ 
+    if(1 != $pages)
+    {
+        echo "<div class=\"pagination\"><span>Page ".$paged." of ".$pages."</span>";
+        if($paged > 2 && $paged > $range+1 && $showitems < $pages) echo "<a href='".get_pagenum_link(1)."'>&laquo; First</a>";
+        if($paged > 1 && $showitems < $pages) echo "<a href='".get_pagenum_link($paged - 1)."'>&lsaquo; Previous</a>";
+ 
+        for ($i=1; $i <= $pages; $i++)
+        {
+            if (1 != $pages &&( !($i >= $paged+$range+1 || $i <= $paged-$range-1) || $pages <= $showitems ))
+            {
+                echo ($paged == $i)? "<span class=\"current\">".$i."</span>":"<a href='".get_pagenum_link($i)."' class=\"inactive\">".$i."</a>";
+            }
+        }
+ 
+        if ($paged < $pages && $showitems < $pages) echo "<a href=\"".get_pagenum_link($paged + 1)."\">Next &rsaquo;</a>";
+        if ($paged < $pages-1 &&  $paged+$range-1 < $pages && $showitems < $pages) echo "<a href='".get_pagenum_link($pages)."'>Last &raquo;</a>";
+        echo "</div>\n";
+    }
+}
