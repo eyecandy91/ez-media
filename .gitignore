@@ -8,7 +8,4 @@ js-dev
 woocommerce.css
 .vscode/*
 .travis.yml
-package.json
-package-lock.json
 phpcs.xml.dist
-gulpfile.js 
