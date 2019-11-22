@@ -32,7 +32,7 @@ gulp.task('beautify', function() {
 gulp.task('purgecss', () => {
   return gulp.src('build/css/style.css')
       .pipe(purgecss({
-          content: ["**/*.php"]
+          content: ["**/*.html", "**/*.php", "js/*.js"]
       }))
       .pipe(gulp.dest(''))
 })
@@ -51,11 +51,11 @@ gulp.task('compress', function (cb) {
 
 gulp.task('watch', ['browserSync', 'sass', 'compress', 'purgecss'], function(){
   gulp.watch('./bulma/style.sass', ['sass']);
-  gulp.watch('./**/*.php', browserSync.reload);
-  gulp.watch('./elements/**/*.php', browserSync.reload);
-  gulp.watch('./js/**/*.js', browserSync.reload);
-  gulp.watch('*.css', ['beautify']);
-  // gulp.watch('*.css', browserSync.reload);
-  gulp.watch('./js-dev/*.js', ['compress']);
-  // Other watchers
+  gulp.watch("./**/*.php", browserSync.reload);
+  gulp.watch("./elements/**/*.php", browserSync.reload);
+  gulp.watch("./js/**/*.js", browserSync.reload);
+  gulp.watch("style.css", browserSync.reload);
+  gulp.watch("*.css", ["beautify"]);
+  gulp.watch("build/css/style.css", ["purgecss"]);
+  gulp.watch("./js-dev/*.js", ["compress"]);
 })
