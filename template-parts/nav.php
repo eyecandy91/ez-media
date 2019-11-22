@@ -48,11 +48,6 @@
 
         <div id="navMenuDocumentation" class="navbar-menu">
             <div class="navbar-end ">
-                <!-- <ul>
-                            <li><a class="is-active" href="#">Home</a></li>
-                            <li><a id="service" href="#">Our services</a></li>
-                            <li><a href="/contact.html">Contact</a></li>
-                        </ul> -->
                 <?php
 							wp_nav_menu( array(
 								'theme_location' => 'menu-1',
