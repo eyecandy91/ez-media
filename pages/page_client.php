@@ -60,7 +60,7 @@ get_header(); ?>
                                     <img src="<?php echo $image_link;?>" alt="<?php echo $image_desc;?>">
                                 </div>
                                 <div class="card-content">
-                                    <h3 class="card-title title is-marginless is-uppercase is-5"><?php the_title(); ?>
+                                    <h3 class="card-title title is-marginless is-uppercase is-5"><?php $url; ?>
                                     </h3>
                                 </div>
                             </a>
