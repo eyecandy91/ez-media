@@ -43,6 +43,6 @@ if( have_rows('service_packages') ):
     endwhile;
 
 endif;
-
+get_template_part( 'template-parts/content-client' );
 get_template_part( 'template-parts/content-section-end' );
 get_footer();
