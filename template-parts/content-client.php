@@ -43,7 +43,7 @@ $args = array(
                                 </div>
                                 <div class="card-content">
                                     <h3 class="card-title title is-marginless is-uppercase is-5">
-                                        <?php $name; ?>
+                                        <?php the_title(); ?>
                                     </h3>
                                 </div>
                             </a>
